@@ -103,9 +103,9 @@ const BomView = React.createClass({
       .filter(x => x != null)
     return (
                   <semantic.Table compact fixed celled>
-                    <semantic.Table.Row>
+                    <tr>
                       {retailerButtons}
-                    </semantic.Table.Row>
+                    </tr>
                   </semantic.Table>
     )
   }
@@ -216,10 +216,9 @@ function RetailerButton(props) {
   }
   const total = props.parts.length
   return (
-    <semantic.Table.Cell
-    >
+    <td>
       test really long thing for the compactness thing test
-    </semantic.Table.Cell>
+    </td>
   )
 }
 
