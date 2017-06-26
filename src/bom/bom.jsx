@@ -296,31 +296,8 @@ function RetailerButton(props) {
   const total = props.parts.length
   return (
     <semantic.Table.Cell
-      className='compact retailerHeader'
-      error={n !== total}
-      key={r}
-      rowSpan={2}
-      onClick={onClick}
     >
-      <div className='retailerButtonCell'>
-        <div className='retailerButtonCellText'>
-          <div className='retailerButtonCellName'>
-            <StoreIcon retailer={r} />
-            {r}
-          </div>
-          <p style={{fontSize: 14, fontWeight: 'normal'}}>
-            {`${n}/${total}`}
-          </p>
-        </div>
-        <div className='retailerButtonCellIcon'>
-          {(() => {
-            if (props.adding) {
-              return <semantic.Loader active inline />
-            }
-            return <i style={{fontSize: 22}} className='icon-basket-3' />
-          })()}
-        </div>
-      </div>
+      test really long thing for the compactness thing test
     </semantic.Table.Cell>
   )
 }
