@@ -102,90 +102,11 @@ const BomView = React.createClass({
       }))
       .filter(x => x != null)
     return (
-      <div className='bom'>
-        <div className='bomTableContainer'>
-          <ReactResponsive query={mediaQueries.mobile_m}>
-            {matches => {
-              return (
-                <div>
                   <semantic.Table compact fixed celled>
-                    <semantic.Table.Header>
-                      <Title colSpan={retailerButtons.length + 1}/>
-                    </semantic.Table.Header>
-                    <semantic.Table.Body>
-                      <InstallPrompt
-                        colSpan={retailerButtons.length + 1}
-                        extensionPresence={this.state.extensionPresence}
-                        bomInstallLink={installExtension}
-                      />
-                      <AdjustQuantity
-                        colSpan={retailerButtons.length + 1}
-                        buyMultiplier={this.state.buyMultiplier}
-                        buyAddPercent={this.state.buyAddPercent}
-                        setBuyMultiplier={v => this.setState({buyMultiplier: v})}
-                        setBuyAddPercent={v => this.setState({buyAddPercent: v})}
-                      />
-                      <semantic.Table.Row>
-                        <semantic.Table.Cell>
-                          {`${lines.length} lines`}
-                        </semantic.Table.Cell>
-                        {retailerButtons}
-                      </semantic.Table.Row>
-                      <semantic.Table.Row>
-                        <semantic.Table.Cell style={{borderTop: 'none'}}>
-                          {(() => {
-                            const n = lines.reduce((n, line) => {
-                              return n + Math.ceil(line.quantity * mult)
-                            }, 0)
-                            return `${n} items`
-                          })()}
-                        </semantic.Table.Cell>
-                      </semantic.Table.Row>
-                      <ExpandBom
-                        colSpan={retailerButtons.length + 1}
-                        collapsed={this.state.collapsed}
-                        setCollapsed={v => this.setState({collapsed: v})}
-                      />
-                      {(() => {
-                        if(!this.state.collapsed && !matches) {
-                          return (
-                            <semantic.Table.Row>
-                              <semantic.Table.Cell colSpan={retailerButtons.length + 1}>
-                                <DoubleScrollbar>
-                                  <TsvTable
-                                    parts={this.props.parts}
-                                    tsv={this.linesToTsv()}
-                                  />
-                                </DoubleScrollbar>
-                              </semantic.Table.Cell>
-                            </semantic.Table.Row>
-                          )
-                        }
-                      })()}
-                    </semantic.Table.Body>
+                    <semantic.Table.Row>
+                      {retailerButtons}
+                    </semantic.Table.Row>
                   </semantic.Table>
-                  {(() => {
-                    if(!this.state.collapsed && matches) {
-                      return (
-                        <DoubleScrollbar>
-                          <TsvTable
-                            parts={this.props.parts}
-                            tsv={this.linesToTsv()}
-                          />
-                        </DoubleScrollbar>
-                      )
-                    }
-                  })()}
-                </div>
-              )
-            }}
-          </ReactResponsive>
-          <DirectStores
-            multiplier={this.getMultiplier()}
-            items={this.props.lines}
-          />
-        </div>
-      </div>
     )
   }
 })
